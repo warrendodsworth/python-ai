@@ -1,0 +1,38 @@
+[
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "obj",
+        "kind": 5,
+        "importPath": "index",
+        "description": "index",
+        "peekOfCode": "obj = {'name': 'Warren'}\n# json.dump(obj, open('dump.json'))\nt = json.dumps(obj, indent=2, sort_keys=True)\nf = open('data.json', 'w')\nf.write(t)\n# print(f.readlines().)\nf.close()\n# header, output = client.request('', method=\"GET\", body=None,  headers=None)",
+        "detail": "index",
+        "documentation": {}
+    },
+    {
+        "label": "t",
+        "kind": 5,
+        "importPath": "index",
+        "description": "index",
+        "peekOfCode": "t = json.dumps(obj, indent=2, sort_keys=True)\nf = open('data.json', 'w')\nf.write(t)\n# print(f.readlines().)\nf.close()\n# header, output = client.request('', method=\"GET\", body=None,  headers=None)",
+        "detail": "index",
+        "documentation": {}
+    },
+    {
+        "label": "f",
+        "kind": 5,
+        "importPath": "index",
+        "description": "index",
+        "peekOfCode": "f = open('data.json', 'w')\nf.write(t)\n# print(f.readlines().)\nf.close()\n# header, output = client.request('', method=\"GET\", body=None,  headers=None)",
+        "detail": "index",
+        "documentation": {}
+    }
+]
