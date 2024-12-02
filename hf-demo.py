@@ -8,6 +8,7 @@ from IPython.display import Audio
 from datasets import load_dataset
 import soundfile as sf
 import simpleaudio as sa
+import streamlit as st
 
 
 # import warnings
@@ -37,9 +38,9 @@ def generate_story(scenario):
         device_map="auto",  # cuda or replace with "mps" to run on a Mac device
     )
     content = f"""
-    You are a storyteller. You can generate a short story based on a simple narrative. Your story should be no more than 20 words.
-    CONTEXT: {scenario}
-  """
+        You are a storyteller. You can generate a short story based on a simple narrative. Your story should be no more than 20 words.
+        CONTEXT: {scenario}
+    """
     messages = [
         {"role": "user", "content": content},
     ]
@@ -62,9 +63,9 @@ def text2speech(text: str):
 
     # Convert audio to file
     sf.write("speech.wav", speech["audio"], samplerate=speech["sampling_rate"])
-    Audio("speech.wav", autoplay=True)
 
     # Load and play the audio file
+    # Audio("speech.wav", autoplay=True) # doesn't autoplay
     wave_obj = sa.WaveObject.from_wave_file("speech.wav")
     play_obj = wave_obj.play()
     play_obj.wait_done()  # Wait until playback is finished
@@ -80,8 +81,37 @@ def text2speech(text: str):
 # # Play audio from the byte stream
 # Audio(audio_buffer.read(), rate=speech["sampling_rate"], autoplay=True)
 
-
-# scenario = img2text('photo.jpg')
+# TEST
+# scenario = img2text("photo.jpg")
 # story = generate_story(scenario)
-story = "The church clock chimed midnight, its echo swallowed by the silent town."
-text2speech(story)
+# story = "The church clock chimed midnight, its echo swallowed by the silent town."
+# text2speech(story)
+
+
+def main():
+    st.set_page_config(page_title="Image to story")
+    st.header("Turn photos into an audio stories")
+    uploaded_file = st.file_uploader("Choose a photo..", type="jpg")
+
+    if uploaded_file is not None:
+        print(uploaded_file)
+        bytes_data = uploaded_file.getvalue()
+        with open(uploaded_file.name, "wb") as file:
+            file.write(bytes_data)
+
+        st.image(uploaded_file, caption="Uploaded photo", use_container_width=True)
+        scenario = img2text(uploaded_file.name)
+        st.header("Scenario")
+        st.write(scenario)
+
+        story = generate_story(scenario)
+        st.header("Story")
+        st.write(story)
+
+        text2speech(story)
+        st.header("Audio")
+        st.audio("speech.wav")
+
+
+if __name__ == "__main__":
+    main()
