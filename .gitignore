@@ -1,4 +1,5 @@
 # Ignore virtual environments
 .venv/
 smushdate/
+storyteller/
 apps/
