@@ -1,19 +1,15 @@
-import io
 from transformers import pipeline
 from dotenv import find_dotenv, load_dotenv
 import torch
-import requests
 import os
-from IPython.display import Audio
 from datasets import load_dataset
 import soundfile as sf
 import simpleaudio as sa
 import streamlit as st
 
-
-# import warnings
-# from urllib3.exceptions import NotOpenSSLWarning
-# warnings.simplefilter("ignore", NotOpenSSLWarning)
+# Tutorial
+# Hugging Face + Langchain in 5 mins | Access 200k+ FREE AI models for your AI apps
+# https://www.youtube.com/watch?v=_j7JEDWuqLE&t=1s
 
 load_dotenv(find_dotenv())
 HUGGINGFACEHUB_API_TOKEN = os.getenv("HUGGINGFACEHUB_API_TOKEN")
@@ -71,13 +67,12 @@ def text2speech(text: str):
     play_obj.wait_done()  # Wait until playback is finished
 
 
-# # Convert audio data to a byte stream
+# # PLAY BYTES
 # audio_buffer = io.BytesIO()
 # sf.write(
 #     audio_buffer, speech["audio"], samplerate=speech["sampling_rate"], format="WAV"
 # )
 # audio_buffer.seek(0)  # Rewind the buffer to the beginning
-
 # # Play audio from the byte stream
 # Audio(audio_buffer.read(), rate=speech["sampling_rate"], autoplay=True)
 
