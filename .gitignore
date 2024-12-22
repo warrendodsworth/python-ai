@@ -1,5 +1,6 @@
-# Ignore virtual environments
+# Ignore virtual environments & env files
 .venv/
+.env
 
 # Ignore the directory
 SmushGPT/
