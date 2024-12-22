@@ -1,5 +1,7 @@
 # Ignore virtual environments
 .venv/
-smushdate/
-storyteller/
+
+# Ignore the directory
+SmushGPT/
+StoryTeller/
 apps/
