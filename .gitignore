@@ -3,6 +3,5 @@
 .env
 
 # Ignore the directory
-DadGPT/
 StoryTeller/
 apps/
